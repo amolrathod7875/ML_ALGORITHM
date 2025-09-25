@@ -1,6 +1,9 @@
 import numpy as np 
 import pandas as pd
 from sklearn import datasets
+import joblib
+from sklearn.metrics import r2_score
+from sklearn.model_selection import train_test_split
 
 class LinearRegression:
     def __init__(self,lr: int = 0.01,n_iters:int = 1000) -> None:           ##"Learning Rate : lr"
@@ -33,11 +36,19 @@ class LinearRegression:
 
 if __name__== "__main__":
     X,y = datasets.make_regression(n_samples=500,n_features=1,noise=25,random_state=4)
+    X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.25,random_state=42)
+
     model = LinearRegression(lr=0.01,n_iters=1000)
     model.fit(X,y)
 
+    prediction = model.predict(X_test)
+
+    print(f"r2_score : {r2_score(y_test,prediction)}")
+
     print(f"Weight : {model.weight}")
     print(f"Bias : {model.bias}")
+    
+
 
 
 
