@@ -1,90 +1,46 @@
-📈 Custom Linear Regression from Scratch
-This project implements a simple Linear Regression model from scratch using only NumPy ⚡ for the math. It’s trained with Gradient Descent and evaluated using the R² Score 🔥.
 
-✨ Features
-📝 Custom Linear Regression implementation (no pre-built sklearn models)
 
-⚡ Gradient Descent optimization
+***
 
-🔮 Make predictions on new data
+### 🧠 A Simple Linear Regression Model from Scratch
 
-📊 Evaluate with R² Score
+This repository contains a simple yet powerful implementation of a linear regression model built entirely from scratch using Python's fundamental libraries. The goal is to provide a clear, educational example of how linear regression works under the hood, powered by the **gradient descent** algorithm.
 
-🧪 Uses synthetic regression dataset (make_regression)
+---
 
-⚙️ Installation
-Clone the repository and install dependencies:
+### 🚀 Getting Started
 
-bash
-git clone https://github.com/amolrathod7875/ML_ALGORITHM.git
-cd https://github.com/amolrathod7875/ML_ALGORITHM.git
-pip install numpy pandas scikit-learn joblib
-📂 Project Structure
-text
-├── linear_regression.py    # 📜 Main implementation file
-├── README.md               # 📖 Documentation
-🛠 How It Works
-🔧 Initialize → Random weights + bias (0).
+To run this code, you'll need the following libraries. If you don't have them, you can install them with a single command:
 
-📚 Train (fit) → Iteratively update weights & bias with gradient descent.
+`pip install numpy pandas scikit-learn joblib`
 
-🔮 Predict (predict) → Use trained values to make predictions.
+* **NumPy**: The backbone for all mathematical and numerical operations.
+* **Pandas**: Used for data handling.
+* **Scikit-learn**: We use this to generate a sample dataset and split it, saving us from a lot of manual work!
+* **Joblib**: For saving and loading our trained model.
 
-📊 Evaluate → Measure performance using R² score.
+---
 
-▶️ Usage
-Run the script:
+### How It Works
 
-bash
-python linear_regression.py
-Sample output:
+The core of this project is the `LinearRegression` class, which implements the following key methods:
 
-text
-r2_score : 0.8647329382856575
-Weight : [34.812]
-Bias : -0.582
-💻 Example in Code
-python
-from sklearn import datasets
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import r2_score
-from linear_regression import LinearRegression
+* **`__init__(self, lr, n_iters)`**: This is where the magic begins! We initialize our model with a **learning rate (`lr`)** and the number of **iterations (`n_iters`)**. The learning rate controls the size of the steps our model takes to learn, while the iterations determine how many times we repeat the learning process.
 
-# 🔨 Generate dataset
-X, y = datasets.make_regression(n_samples=500, n_features=1, noise=25, random_state=4)
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+* **`fit(self, X, y)`**: This is the training method. It's here that the model learns the relationships in your data. It starts with random weights and a bias and then iteratively adjusts them using **gradient descent**. This process minimizes the difference between the model's predictions and the actual data points, making the model more accurate with each step.
 
-# 🤖 Train model
-model = LinearRegression(lr=0.01, n_iters=1000)
-model.fit(X_train, y_train)
+* **`predict(self, X)`**: Once the model is trained, this method uses the learned **weights** and **bias** to make predictions on new data. The prediction is calculated using the simple linear equation: $y_{pred} = X \cdot \text{weights} + \text{bias}$.
 
-# 🔮 Predictions
-predictions = model.predict(X_test)
+---
 
-# 📊 Evaluation
-print("R2 Score:", r2_score(y_test, predictions))
-print("Weight:", model.weight)
-print("Bias:", model.bias)
-📦 Requirements
-🐍 Python 3.8+
+### 💻 Running the Code
 
-🔢 NumPy
+The script is ready to run as is! Just execute the file, and it will:
 
-🐼 Pandas
+1.  **Generate a sample dataset** 📊 with 500 data points.
+2.  **Split the data** into training and testing sets.
+3.  **Train the `LinearRegression` model** using the training data.
+4.  **Make predictions** on the unseen test data.
+5.  **Evaluate the model's performance** by calculating and printing the **R-squared score**. A score closer to 1.0 means the model is a great fit for the data!
+6.  **Print the final `weight` and `bias`** values that the model learned.
 
-📚 scikit-learn
-
-💾 joblib
-
-Install via:
-
-bash
-pip install -r requirements.txt
-🚀 Future Improvements
-📊 Add MSE and MAE evaluation
-
-🔁 Save & Load model with joblib
-
-🏋️‍♂️ Add regularization (Ridge, Lasso)
-
-🎨 Plot regression line with Matplotlib

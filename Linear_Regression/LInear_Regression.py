@@ -47,8 +47,3 @@ if __name__== "__main__":
 
     print(f"Weight : {model.weight}")
     print(f"Bias : {model.bias}")
-    
-
-
-
-
